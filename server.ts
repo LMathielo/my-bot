@@ -33,6 +33,16 @@ client.on('message_create', async msg => {
     media.filename = 'CustomImageName.png';
     msg.reply(media, undefined, { sendMediaAsSticker: true });
   }
+  
+  if (msg.body === '!dog') {
+    const { data } = await axios('https://dog.ceo/api/breeds/image/random');
+
+    const media = await MessageMedia.fromUrl(data.message);
+
+    media.mimetype = 'image/png';
+    media.filename = 'CustomImageName.png';
+    msg.reply(media, undefined, { sendMediaAsSticker: true });
+  }
 
   if (msg.body === '!capivara') {
     const { data } = await axios(
